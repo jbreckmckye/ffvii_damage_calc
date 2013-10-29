@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>	
+	<head>
+		<title>Final Fantasy VII Damage Calculator</title>	
+		<meta name="description" content="Work out how much damage an attack will cause with this handy calculator"/>	
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body class="js-disabled">
+			<script type="text/javascript">
+				document.getElementsByTagName("body")[0].className = 'js-enabled';
+			</script>
+			
+			<div class="sect heading">
+				<h1>Final Fantasy VII Damage Calculator</h1>
+				<p>Work out how much damage an attack will cause with this handy calculator!</p>
+			</div>
+			
+			<noscript>
+				<p class="sect box-warning heading">You must enable JavaScript in order to use this tool. If you need help doing this, you can find instructions <a href="http://www.enable-javascript.com/">here</a></p>
+			</noscript>
+
+			<form id="main" class="js">
+				<div id="error" class="hidden">
+					<p class="sect validation-msg box-warning">
+					Something went wrong. Are you sure all the fields are filled in?
+					</p>				
+				</div>
+
+				<div id="Move" class="sect row-five">
+					<h2 class="first">Move / Attack</h2>
+						<p>
+							<label for="type" class="lead">Type</label>
+							<select id="type">
+								<option value="Physical">Physical</option>
+								<option value="Magical">Magical</option>
+								<option value="Curative">Curative</option>
+							</select>
+							<span class="note tooltip">What 0x IDs are these? (advanced)<span class="tooltip-content box-help">
+							    'Physical' corresponds to types X1; 'Magical' to types X2 and 'Curative' 
+							    to types X5. You can find out more about these types on the 
+							    <a href="http://wiki.qhimm.com/view/FF7/Battle/Damage_Calculation">Qhimm wiki</a></span>
+							</span>
+					
+						</p>
+						<p>
+							<label class="lead" for="power" class="left">Power</label><input type="text" id="power" value="16"></input>
+							<span class="note">16 for normal attacks. </span><span class="note tooltip">Read more.<span class="tooltip-content box-help">This number represents the strength of the attack. 
+							    Most guides list it as 'X/16'. Ordinary attacks have a power of 16, Bolt has a power of 8, Bolt2 = 20 
+							    and Bolt3 = 64. The strongest magic attack - the venerable Bahamut ZERO - comes in at 120.</span>
+							</span>
+						</p>
+						<p name="magical-only" >
+							<label class="lead">Quadra Magic</label>
+							<label><input type="radio" name="quadra-magic" id="quadra-magic" value="none" checked="checked">N/A</label>
+							<label><input type="radio" name="quadra-magic" value="quad">Hits all four times</label>
+							<label><input type="radio" name="quadra-magic" value="once">Hits once of four times</label>
+						</p>
+						<p>
+						    <label class="lead">Split damage</label>
+						    <label for="split"><input type="checkbox" id="split">Yes</label>
+						    <span class="note tooltip">When is damage split?<span class="tooltip-content box-help">Physical 
+						        attacks always split when they hit multiple targets. Player spells do if they can be toggled 
+						        between single or multiple enemies. Summons and multi-hit-mandatory skills like Ultima do not.</span>
+						    </span>
+                        
+						</p>
+				</div>
+				
+				<div id="Attacker" class="sect row-five">
+					<h2 class="first">Attacker stats</h2>
+					
+					<p>
+						<label for="level" class="lead">Level:</label><input type="text" id="level" value="1">
+						<span name="physical-only"><label for="weapon" name="physical-only" class="lead">Weapon power:</label><input type="text" id="weapon" value="0"><span class="note">Player characters only</span></span>
+					</p>
+					<p>
+						<span name="physical-only"><label for="strength" class="lead">Strength:</label><input type="text" id="strength" value="1"></span>
+                        <span name="magical-only"><label for="magic" class="lead">Magic:</label><input type="text" id="magic" value="1"></span>
+					</p>
+					<p>
+						<label class="lead">Statuses</label>
+						<label for="berserk"><input type="checkbox" id="berserk">Berserked</label>
+						<label for="mini"><input type="checkbox" id="mini">Mini</label>
+						<label for="critical"><input type="checkbox" id="critical">Critical hit / lucky girl</label>
+						<label for="frog"><input type="checkbox" id="frog">Frog</label>
+					</p>
+					<p>
+                        <label class="lead">Special modifiers</label>
+                        <label for="atkr-hero-drinks">Hero drinks</label>
+                        <select id="atkr-hero-drinks">
+                                <option value="0">None</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                        </select>
+
+                    </p>
+				</div>
+				
+				<div id="Defender" class="sect row-five">
+					<h2 class="first">Defender<span class="help tooltip">Where can I get enemy stats?<span class="tooltip-content box-help">
+					    You can find detailed statistics for every foe with TFergusson's comprehensive 
+					    <b><a href="http://www.gamefaqs.com/ps/197341-final-fantasy-vii/faqs/31903" target="_blank">enemy mechanics guide</a></b></span>
+					    </span>
+					</h2>
+					<p>
+						<label class="lead" for="defence">Defence:</label><input type="text" id="defence" class="physical-only" value="1">
+						<span name="magical-only"><label class="lead" for="mdefence">Magic Defence:</label><input type="text" id="mdefence" value="1"></span>
+					</p>
+					<p name="physical-only">
+						<label class="lead">Back attacks</label>
+						<label for="back-attacked"><input type="checkbox" id="back-attacked">Back attacked</label>
+						<label for="back-attack-mod">Damage multiplier</label><input type="text" id="back-attack-mod" value="2"><span class="note">This is 2 for most creatures</span>
+					</p>
+					<p>
+						<label class="lead">Statuses</label>
+						
+						<label for="barrier"><input type="checkbox" id="barrier"><span class="physical-only">Barrier/</span><span span="magic-only">MBarrier</span></label>
+						<label for="sadness"><input type="checkbox" id="sadness">Sadness</label>
+						<label for="defending"><input type="checkbox" id="defending">Defending</label>
+						<label for="back-row"><input type="checkbox" id="back-row">Back row effect</label>
+					</p>
+					
+					<p>
+						<label class="lead">Special modifiers</label>
+						<label for="def-hero-drinks">Hero drinks</label>
+						<select id="def-hero-drinks">
+								<option value="0">None</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+						</select>
+						
+						<label for="def-dragon-forces">Dragon force castings</label>
+						<select id="def-dragon-forces">
+								<option value="0">None</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+						</select>
+						
+					</p>
+					
+				</div>
+			</form>
+			
+			<div class="sect js">
+			    
+				<div class="heading" id="beforeSearch">
+					<h3>Enter your conditions into the form above and hit 'Calculate' to get your results!</h3><a name="calculate" class="button shift-right">Calculate</a>
+				</div>
+				
+				<div class="row-five" id="afterSearch" style="display: none;">
+				    <h2 class="first">
+				        Results
+				    </h2>
+				    <div>
+				        <p class="lead">Overview</p>
+				        <div class="p-flow">
+				            <p>Max damage: <strong id="result-max">9654</strong></p>
+                            <p>Min damage: <strong id="result-min">9654</strong></p>
+                            <p>Overflow is <b id="result-overflow">--</b></p>
+                            <span class="note tooltip">
+                                Overflow requirements
+                                <span class="tooltip-content box-help">To trigger overflow at the first stage of the equation, you will need to achieve over 262,144 base damage. To achieve it during
+                                    random variation, you will need a final pre-cap damage of at least 524,288 (559,095 for 100% success).
+                                    </span>
+                            </span>
+				        </div>
+				    </div>
+				    <div class="two">
+				        <p class="lead">Breakdown (before capping)</p>
+				        <dl id="breakdown">
+				            <dt>3456</dt>
+				            <dd>Arbitrary damage</dd>
+				            
+				            <dt>5676</dt>
+				            <dd>More damage from somewhere</dd>
+				            
+				            <dt>9999</dt>
+                            <dd>More lol</dd>
+                            
+                            <dt>51676</dt>
+                            <dd>More damage from somewhere</dd>
+				            
+				        </dl>
+				        
+				        
+				        
+				    </div>
+				    <div>
+				        <p class="lead">Again?</p>
+				        <a name="calculate" class="button right">Recalculate</a>
+				    </div>
+				</div>
+				
+			</div>
+			
+			<p class="footer">
+			    <span>Written by <a href="http://www.breck-mckye.com">Jimmy</a></span>
+			</p>
+			    
+			
+		</div>
+	<script type="text/javascript" src="logic.js"></script>
+	<script type="text/javascript" src="ui.js"></script>		
+	</body>
+</html>
+	

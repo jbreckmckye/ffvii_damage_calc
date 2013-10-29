@@ -1,0 +1,285 @@
+* {
+	margin: 0;
+}
+
+h3 {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+noscript {
+	display: block;
+}
+
+/*Helpers*/
+.shift-right {
+    margin-left: 1em;
+}
+
+.p-flow > * {
+    margin-bottom: 0.333em;
+}
+
+
+/*Show and hide */
+.hidden {
+	display: none;
+}
+
+.js-disabled .js {
+	display: none;
+}
+
+/*Components*/
+body {
+	font-family: arial, sans-serif;
+	color: #202020;
+	background-color: #f0f0f0;	
+}
+
+.sect {
+	background-color: #fbfbfb;
+	
+	width: 1024px;
+	
+	margin: 24px auto;
+	
+	border: 1px solid #dddddd;
+	
+	padding: 24px;
+	}
+	.sect:after {
+		content: " ";
+		display: block;
+		height: 0;
+		font-size: 0;
+		clear: both;
+		zoom: 1;
+	}
+
+/*Skins*/
+.box-warning {
+	border: 1px solid red;
+	background-color: #ffc6c8;
+}
+
+.box-help {
+	border: 1px solid #339933;
+	background-color: #9DE590;	
+}
+
+
+
+/*Form*/
+form h2 {
+	margin-top: 0.66em;
+}
+
+.row-five > * {
+	width: 17%;
+	margin-left: 3%;
+	float: left;
+}
+
+.row-five > .first {
+	width: 20%;
+	margin-left: 0;
+}
+
+.row-five > .two {
+    width: 37%;
+}
+
+
+#main input[type="text"], #main select {
+	display: block;
+	
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	
+	width: 100%;
+}
+
+/*Form validation*/	
+form.valid .validation-msg {
+	display: none;
+	}
+
+
+/*Vertical spacing between inputs*/
+label {
+	margin-top: 7px;
+}
+
+form p {
+	margin-top: -7px; /*Pulls up form paras that have the 5px margin-top applied*/
+}
+
+
+/*Inner form layout*/
+label {
+	display: inline-block;
+	zoom: 1;
+}
+
+
+label input {
+	margin-right: 5px;
+}
+
+label {
+	margin-right: 10px;
+}
+
+/*Form text*/
+
+.note {
+	margin-top: 0.2em;
+	text-align: right;
+}
+
+.lead {
+	font-weight: bold;
+	margin-bottom: 0.2em;
+	display: block;
+}
+
+.help {
+	display: block;
+}
+
+h2 .help {
+	font-weight: normal;
+	font-size: 0.5em;
+}
+
+
+
+
+
+/*Typography*/
+html{
+	font-size: 62.5%;
+}
+
+body {
+	font-size: 1.5em;
+}
+
+.note {
+	font-size: 0.7em;
+}
+
+/*Content*/
+.heading {
+	text-align: center;
+}
+
+
+/*Buttons*/
+.button {
+	display: inline-block;
+	padding: 0.5em;
+	background-color: #13528A;
+	position: relative;
+	border: 1px solid #03427A;
+	border-radius: 2px;
+	text-decoration: none;
+	color: white;
+	box-shadow: 0px 1px 0px rgba(0,0,0,0.1);
+}
+
+.button:before {
+	content:"";
+	display: block;
+	height: 1px;
+	background-color: #3372AA;
+	position: absolute;
+	top: 0; right: 0; left: 0;
+}
+
+.button:hover:before {
+	display: none;
+}
+
+.button:hover {
+	box-shadow: none;
+}
+
+.button:active {
+    background-color: #03427a;
+}
+
+.button:active:before {
+    display: none;
+}
+
+
+/*CSS tooltip*/
+.tooltip {
+	text-decoration: underline;
+}
+
+.tooltip .tooltip-content {
+	display: none;
+}
+
+.tooltip:hover {
+	position: relative;
+}
+
+.tooltip:hover .tooltip-content {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300px;
+	font-weight: normal;
+	padding: 0.4em;
+	text-align: left;
+}
+
+/*BREAKDOWN*/
+dl {
+    background: #f2f2f2;
+    padding: 1%;
+    border: 1px solid #ccc;
+    height: 5em;
+    overflow-y: scroll;
+}
+
+dl.expanded {
+    max-height: auto;
+}
+
+dt {
+    display: inline-block;
+    width: 25%;
+    margin-right: -0.3em;
+    margin-bottom: 0.15em;
+}
+
+dd {
+    display: inline-block;
+    width: 75%;
+    vertical-align: top;
+}
+
+
+/*FOOTER*/
+.footer {
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    background: #fbfbfb;
+    border-top: 1px solid #dddddd;
+    overflow: hidden;
+}
+
+.footer span {
+    float: right;
+    padding: 6px;
+}
+
