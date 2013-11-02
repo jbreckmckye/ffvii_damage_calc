@@ -231,6 +231,12 @@ function runCalculator() {
     else if (data.type == "Magical") {
         result = calculator.magicalFormula(data);
     }
+    else if (data.type == 'Curative') {
+        result = calculator.curativeFormula(data)
+    }
+    else {
+        debug.print("Couldn't determine damage function");
+    }
     
     showResults(result);
 }

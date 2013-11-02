@@ -215,14 +215,15 @@ var calculator = (function() {
 		var as = scenario.attackerStats; var ds = scenario.defenderStats; var skillPower = scenario.skillPower;
 		
 		attackerPower = 6 * (as.magic + as.level);
+		console.log(attackerPower);
 		baseDamage = (skillPower * (512 - ds.mdef) * attackerPower) / (16 * 512);
 				
 		damageObject.setDamage(baseDamage,"Magical base damage");
 		return damageObject;
 	}
 	
-	function base_curative (attackerStats, skillPower, defenderStats) {
-		var as = attackerStats; var ds = defenderStats;
+	function base_curative (damageObject, scenario) {
+		var as = scenario.attackerStats; var ds = scenario.defenderStats; var skillPower = scenario.skillPower;
 		
 		attackerPower = 6 * (as.magic * as.level);
 		baseDamage = attackerPower + (22 * skillPower); 
@@ -318,6 +319,23 @@ var calculator = (function() {
 	    
 	    return modifiers;
 	}
+	
+	function getModifiersForCurative(conditions) {
+	    modifiers = conditions;
+	    
+	    // Remove magical/physical-only modifiers
+	    modifiers.mini = false;
+        modifiers.frog = false;
+        modifiers.backAttacked = false;
+        modifiers.defending = false;
+        modifiers.longRange = false;
+        modifiers.berserk = false;
+        modifiers.critical = false;
+        modifiers.sadness = false;
+        
+        return modifiers;	    
+	    
+	}
 
 	
 	// MEMBERS TO BE EXPOSED AS PUBLIC
@@ -345,38 +363,23 @@ var calculator = (function() {
 	    return dmg;
 	
 	}
+	
+	function curativeFormula(scenario) {
+	    
+	    var dmg = new DamageObject();
+	    dmg = base_curative(dmg, scenario);
+	    var modifiersToApply = getModifiersForCurative(scenario.conditions);
+	    
+	    dmg = applyModifiers(dmg, modifiersToApply);
+	    
+	    return dmg;
+	    
+	}
 		
 	return {
 		physicalFormula : physicalFormula,
-		magicalFormula : magicalFormula
+		magicalFormula : magicalFormula,
+		curativeFormula : curativeFormula
 	};
 	
 })(); //end of iife that returns calculator object
-
-// TEST
-window.x = {
-        type : 'physical',
-        skillPower : 16,
-        attackerStats : {
-            level : 50,
-            attack : 78,
-            magic : 4,
-            weapon : 99,
-            heroDrinks : 0
-        },
-        defenderStats : {
-            defence : 120,
-            mdef : 1,
-            heroDrinks : 0,
-            dragonForce : 0
-        },
-        conditions : {
-            critical : true
-        }
-    };
-    
-window.c = calculator.physicalFormula;
-
-
-
-
