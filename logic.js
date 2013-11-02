@@ -314,7 +314,7 @@ var calculator = (function() {
 	    modifiers.frog = false;
 	    modifiers.backAttacked = false;
 	    modifiers.defending = false;
-	    modifiers.longRange = false;
+	    modifiers.backRow = false;
 	    modifiers.berserk = false;
 	    modifiers.critical = false;
 	    
@@ -329,7 +329,7 @@ var calculator = (function() {
         modifiers.frog = false;
         modifiers.backAttacked = false;
         modifiers.defending = false;
-        modifiers.longRange = false;
+        modifiers.backRow = false;
         modifiers.berserk = false;
         modifiers.critical = false;
         modifiers.sadness = false;
@@ -398,7 +398,6 @@ var calculator = (function() {
 	    
 	    var dmg = new DamageObject();
 	    scenario = applyBoosterEffects(scenario);
-	    window.x = scenario;
         dmg = base_physical(dmg, scenario);
         var modifiersToApply = getModifiersForPhysical(scenario.conditions);
                 
@@ -441,3 +440,6 @@ var calculator = (function() {
 	};
 	
 })(); //end of iife that returns calculator object
+
+
+

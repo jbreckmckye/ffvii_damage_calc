@@ -172,6 +172,10 @@ body {
 	font-size: 0.7em;
 }
 
+.beta-msg {
+    color: #882200;
+}
+
 /*Content*/
 .heading {
 	text-align: center;
