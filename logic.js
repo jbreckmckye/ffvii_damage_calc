@@ -189,9 +189,10 @@ var calculator = (function() {
 	   
     function xMultihit(damageObject, hits) {
         damageObject.multiplyDamage(hits, "Multiple hits (x" + hits + ")")
-    }
+    }    
 	
 	function base_physical(damageObject, scenario) {
+	    
 		var as = scenario.attackerStats; var ds = scenario.defenderStats; var skillPower = scenario.skillPower;
 
         var totalAttack = as.attack + as.weapon;
@@ -336,6 +337,59 @@ var calculator = (function() {
         return modifiers;	    
 	    
 	}
+	
+	function applyBoosterEffects(scenario) {
+	    scenario.attackerStats = applyStatsModifiers(scenario.attackerStats);
+	    scenario.defenderStats = applyStatsModifiers(scenario.defenderStats);
+	    return scenario;    
+	}
+	
+	
+	function applyStatsModifiers(stats) {
+	    
+        var attackModifier = 0;
+        var defenceModifier = 0;
+        var magicModifier = 0;
+        var mdefModifier = 0;
+        
+        if (typeof(stats.heroDrinks) == Number && stats.heroDrinks > 0) {
+            var heroDrinkMod = stats.heroDrinks * 0.3;
+            
+            attackModifier += heroDrinkMod;
+            defenceModifier += heroDrinkMod;
+            magicModifier += heroDrinkMod;
+            mdefModifier += heroDrinkMod;      
+	    }
+	    
+	    if (typeof(stats.dragonforce) == Number && stats.dragonforce > 0) {
+	        var dragonforceMod = stats.dragonforce * 0.5;
+	        
+	        defenceModifier += dragonforceMod;
+	        mdedModifier += dragonforceMod;	        
+	    }
+	    
+	    if (attackModifier > 1) {attackModifier = 1;}
+	    if (defenceModifier > 1) {defenceModifier = 1;}
+	    if (magicModifier > 1) {magicModifier = 1;}
+	    if (mdefModifier > 1) {mdefModifier = 1;}
+	    
+	    if (stats.attack) {
+	        stats.attack += (stats.attack * attackModifier);
+	    }
+	    if (stats.defence) {
+	        stats.defence += (stats.defence * defenceModifier);
+	    }
+	    if (stats.magic) {
+	        stats.magic += (stats.magic * magicModifier);
+	    }
+	    if (stats.mdef) {
+	        stats.mdef += (stats.mdef * mdefModifier);
+	    }
+	    
+	    return stats;
+	    
+	    
+	}
 
 	
 	// MEMBERS TO BE EXPOSED AS PUBLIC
@@ -343,6 +397,7 @@ var calculator = (function() {
 	function physicalFormula(scenario) {
 	    
 	    var dmg = new DamageObject();
+	    scenario = applyBoosterEffects(scenario);
         dmg = base_physical(dmg, scenario);
         var modifiersToApply = getModifiersForPhysical(scenario.conditions);
                 
@@ -355,6 +410,7 @@ var calculator = (function() {
 	function magicalFormula(scenario) {
 	    
 	    var dmg = new DamageObject();
+	    scenario = applyBoosterEffects(scenario);
 	    dmg = base_magical(dmg, scenario);
 	    var modifiersToApply = getModifiersForMagical(scenario.conditions);
 	    
@@ -367,6 +423,7 @@ var calculator = (function() {
 	function curativeFormula(scenario) {
 	    
 	    var dmg = new DamageObject();
+	    scenario = applyBoosterEffects(scenario);
 	    dmg = base_curative(dmg, scenario);
 	    var modifiersToApply = getModifiersForCurative(scenario.conditions);
 	    
