@@ -1,3 +1,7 @@
+/* This source is made available under the terms of the GPL version 2 */
+/* You can redistribute this program and its sources providing that you do not remove attribution. */
+
+
 * {
 	margin: 0;
 }
@@ -20,6 +24,9 @@ noscript {
     margin-bottom: 0.333em;
 }
 
+.float-left {
+    float: left !important;
+}
 
 /*Show and hide */
 .hidden {
@@ -34,17 +41,17 @@ noscript {
 body {
 	font-family: arial, sans-serif;
 	color: #202020;
-	background-color: #f0f0f0;	
+	background-color: #bbbbbb;	
 }
 
 .sect {
-	background-color: #fbfbfb;
+	background-color: #f7f7f7;
 	
 	width: 1024px;
 	
 	margin: 24px auto;
 	
-	border: 1px solid #dddddd;
+	border: 1px solid #888888;
 	
 	padding: 24px;
 	}
@@ -110,11 +117,11 @@ form.valid .validation-msg {
 
 /*Vertical spacing between inputs*/
 label {
-	margin-top: 7px;
+	margin-top: 9px;
 }
 
 form p {
-	margin-top: -7px; /*Pulls up form paras that have the 5px margin-top applied*/
+	margin-top: -9px; /*Pulls up form paras that have the 5px margin-top applied*/
 }
 
 
@@ -173,7 +180,7 @@ body {
 }
 
 .beta-msg {
-    color: #882200;
+    color: #aa0000;
 }
 
 /*Content*/
@@ -277,13 +284,18 @@ dd {
     position: fixed;
     bottom:0;
     width: 100%;
-    background: #fbfbfb;
-    border-top: 1px solid #dddddd;
+    background: #f7f7f7;
+    border-top: 1px solid #888888;
     overflow: hidden;
 }
 
 .footer span {
     float: right;
     padding: 6px;
+}
+
+/*HEADER*/
+h1 {
+    margin-bottom: 5px;
 }
 

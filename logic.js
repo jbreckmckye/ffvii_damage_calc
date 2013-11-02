@@ -1,3 +1,7 @@
+// This source is made available under the terms of the GPL version 2
+// You can redistribute this program and its sources providing that you do not remove attribution.
+
+
 //Debugging controls
 var debug = {
 	state : true,
