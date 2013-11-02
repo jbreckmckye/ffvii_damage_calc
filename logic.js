@@ -80,7 +80,6 @@ var calculator = (function() {
 		
 		this.getRandomCappedDamage = function() {
 			var dmg = this.getCurrentDamage();
-			debug.print("Random variation start: " + dmg);
 			
 			var max_i = dmg * (3841 + 255);
 			var max_ii = max_i / 4096; 
@@ -268,8 +267,14 @@ var calculator = (function() {
             xSplitDamage(dmg);
         }
         
-        if (modifiers.quadra) {
+        if (modifiers.quadra == 'once' || modifiers.quadra == 'quad') {            
+            console.log('Equals ' + modifiers.quadra);
+            window.x = modifiers.quadra;
             xQuadraPenalty(dmg);
+        }
+        
+        if (modifiers.quadra === 'quad') {
+            xMultihit(dmg, 4);
         }
         
         if (modifiers.barriers) {
@@ -330,6 +335,7 @@ var calculator = (function() {
 	}
 	
 	function magicalFormula(scenario) {
+	    
 	    var dmg = new DamageObject();
 	    dmg = base_magical(dmg, scenario);
 	    var modifiersToApply = getModifiersForMagical(scenario.conditions);

@@ -74,9 +74,6 @@ function showResults(damageObject) {
     }    
 
     function addBreakdown(damage, note) {
-        console.log(damage);
-        console.log(note);
-        
         var target = document.getElementById('breakdown');
         
         var dt = document.createElement('dt');
@@ -206,7 +203,7 @@ function parseForm() {
             mini : getval('mini'),
             critical : getval('critical'),
             frog : getval('frog'),
-            barrier : getval('barrier'),
+            barriers : getval('barrier'),
             sadness : getval('sadness'),
             defending : getval('defending'),
             backRow : getval('back-row'),
@@ -214,6 +211,8 @@ function parseForm() {
             backAttackMultiplier : getval('back-attack-mod')
         }
     };
+    
+    window.x = parsedData;
     
     return parsedData;
     
