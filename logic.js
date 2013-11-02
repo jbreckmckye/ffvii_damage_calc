@@ -352,7 +352,7 @@ var calculator = (function() {
         var magicModifier = 0;
         var mdefModifier = 0;
         
-        if (typeof(stats.heroDrinks) == Number && stats.heroDrinks > 0) {
+        if (typeof(stats.heroDrinks) !== undefined && stats.heroDrinks > 0) {
             var heroDrinkMod = stats.heroDrinks * 0.3;
             
             attackModifier += heroDrinkMod;
@@ -361,11 +361,11 @@ var calculator = (function() {
             mdefModifier += heroDrinkMod;      
 	    }
 	    
-	    if (typeof(stats.dragonforce) == Number && stats.dragonforce > 0) {
+	    if (typeof(stats.dragonforce) !== undefined && stats.dragonforce > 0) {
 	        var dragonforceMod = stats.dragonforce * 0.5;
 	        
 	        defenceModifier += dragonforceMod;
-	        mdedModifier += dragonforceMod;	        
+	        mdefModifier += dragonforceMod;	        
 	    }
 	    
 	    if (attackModifier > 1) {attackModifier = 1;}
@@ -398,6 +398,7 @@ var calculator = (function() {
 	    
 	    var dmg = new DamageObject();
 	    scenario = applyBoosterEffects(scenario);
+	    window.x = scenario;
         dmg = base_physical(dmg, scenario);
         var modifiersToApply = getModifiersForPhysical(scenario.conditions);
                 

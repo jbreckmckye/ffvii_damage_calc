@@ -194,7 +194,7 @@ function parseForm() {
             defence : getval('defence'),
             mdef : getval('mdefence'),
             heroDrinks : getval('def-hero-drinks'),
-            dragonForce : getval('def-dragon-forces')
+            dragonforce : getval('def-dragon-forces')
         },
         conditions : {
             quadra : getval('quadra-magic'),
