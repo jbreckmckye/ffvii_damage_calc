@@ -27,7 +27,7 @@ debug.print("Debug is on");
 //Constants
 var constant = {
 	overflowValue : 2147483648,
-	rndOverflowLowerBound : 524288,
+	rndVariationMinOverflowThreshold : 524288,
 	rndOverflowTotalThreshold : 559095
 }
 
@@ -176,7 +176,7 @@ var calculator = (function() {
 	        finalDmgMsg += "Will cap at 9999. ";
 	    }
 	    
-	    if (finalDmg > constant.rndOverflowLowerBound && finalDmg < constant.rndOverflowTotalThreshold) {
+	    if (finalDmg > constant.rndVariationMinOverflowThreshold && finalDmg < constant.rndOverflowTotalThreshold) {
 	        finalDmgMsg += "May OVERFLOW in randomization. "
 	    }
 	    
@@ -292,6 +292,8 @@ var calculator = (function() {
 	
 	function getModifiersForPhysical(conditions) {
 	    modifiers = conditions;	    
+	    
+	    // Remove magical-only modifiers
 	    modifiers.quadra = false;
 	    
 	    return modifiers;	    
