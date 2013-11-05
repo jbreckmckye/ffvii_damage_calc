@@ -85,7 +85,7 @@ var calculator = (function() {
 		this.getRandomCappedDamage = function() {
 			var dmg = this.getCurrentDamage();
 			
-			var max_i = dmg * (3841 + 255);
+			var max_i = dmg * (3841 + 254);
 			var max_ii = max_i / 4096; 
 			
 			if (max_i > constant.overflowValue) {			
