@@ -1,5 +1,7 @@
 # Final Fantasy VII Damage Calculator
 
+https://www.breck-mckye.com/ffvii_damage_calc/
+
 HTML/JS application to work out the damage caused by attacks in FFVII under a variety of situations.
 
 This is a toy project from when I was first getting to grips with JavaScript. Though I think there were some good ideas (starting out with a MVW pattern; experimenting with OOCSS), there were some very bad ones too. Not least failing to use version control.
