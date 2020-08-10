@@ -199,9 +199,9 @@ var calculator = (function() {
 	    
 		var as = scenario.attackerStats; var ds = scenario.defenderStats; var skillPower = scenario.skillPower;
 
-        var totalAttack = as.attack + as.weapon;
+        var totalAttack = min(as.attack + as.weapon, 255);
         
-        var initDamage = (skillPower / 16) * (totalAttack + (((as.level + totalAttack) / 32) * ((as.level * totalAttack) / 32)));
+        var initDamage = (totalAttack + (((as.level + totalAttack) / 32) * ((as.level * totalAttack) / 32)));
 		combinedPower = skillPower * (512 - ds.defence) * initDamage;
 			
 		baseDamage = combinedPower / (16 * 512);
