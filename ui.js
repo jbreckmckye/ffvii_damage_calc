@@ -54,8 +54,8 @@ for (var i = 0; i < inputs.length; i++) {
             this.value = this.defaultValue;
         }
 
-        else if (this.value > 255) {
-            this.value = 255;
+        else if (this.value > 511) {
+            this.value = 511;
         }
     }
 }
